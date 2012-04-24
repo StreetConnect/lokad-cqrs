@@ -98,16 +98,13 @@ namespace Lokad.Cqrs.Build.Client
         public CqrsClient Build()
         {
             var container = new Container();
-            _enlistments(container);
             Configure(container);
             return new CqrsClient(container);
         }
 
         void IAdvancedClientBuilder.UpdateContainer(Container registry)
         {
-            _enlistments(registry);
             Configure(registry);
-            
         }
 
         public readonly SystemObserver Observer;
@@ -133,6 +130,7 @@ namespace Lokad.Cqrs.Build.Client
             reg.Register(serializer);
             reg.Register<IEnvelopeStreamer>(c => streamer);
             reg.Register(_registry);
+            _enlistments(reg);
         }
 
         public IAdvancedClientBuilder Advanced
