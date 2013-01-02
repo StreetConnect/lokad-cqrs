@@ -23,7 +23,7 @@ namespace Lokad.Cqrs.Core.Dispatch.Events
         }
     }
     [Serializable]
-    public sealed class EnvelopeInboxFailed : ISystemEvent
+    public sealed class EnvelopeInboxFailed : ISystemEventExeption
     {
         public Exception Exception { get; private set; }
         public string InboxName { get; private set; }

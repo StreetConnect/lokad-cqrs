@@ -10,7 +10,7 @@ using System;
 namespace Lokad.Cqrs.Core.Dispatch.Events
 {
     [Serializable]
-    public sealed class EnvelopeAckFailed : ISystemEvent
+    public sealed class EnvelopeAckFailed : ISystemEventExeption
     {
         public Exception Exception { get; private set; }
         public string EnvelopeId { get; private set; }
