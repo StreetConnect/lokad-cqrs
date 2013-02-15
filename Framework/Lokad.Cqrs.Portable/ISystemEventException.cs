@@ -8,7 +8,7 @@ namespace Lokad.Cqrs
     /// <summary>
     /// Extra Interface to expose Exception from ISystemEvents.
     /// </summary>
-    public interface ISystemEventExeption : ISystemEvent
+    public interface ISystemEventException : ISystemEvent
     {
         Exception Exception { get; }        
 

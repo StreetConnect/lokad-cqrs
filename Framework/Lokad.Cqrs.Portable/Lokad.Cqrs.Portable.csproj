@@ -134,7 +134,7 @@
     <Compile Include="IAfterConfigurationTask.cs" />
     <Compile Include="IEngineStartupTask.cs" />
     <Compile Include="ImmutableAttribute.cs" />
-    <Compile Include="ISystemEventExeption.cs" />
+    <Compile Include="ISystemEventException.cs" />
     <Compile Include="MemoryStorage.cs" />
     <Compile Include="MessageContext.cs" />
     <Compile Include="HideObjectMembersFromIntelliSense.cs" />

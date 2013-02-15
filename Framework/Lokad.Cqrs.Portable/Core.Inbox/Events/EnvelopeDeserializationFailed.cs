@@ -13,7 +13,7 @@ namespace Lokad.Cqrs.Core.Inbox.Events
     /// Raised when something goes wrong with the envelope deserialization (i.e.: unknown format or contract)
     /// </summary>
     [Serializable]
-    public sealed class EnvelopeDeserializationFailed : ISystemEventExeption
+    public sealed class EnvelopeDeserializationFailed : ISystemEventException
     {
         public Exception Exception { get; private set; }
         public string QueueName { get; private set; }
