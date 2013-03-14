@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Transactions;
+using Lokad.Cqrs.Core.Dispatch.Events;
+using Lokad.Cqrs.Core.Outbox;
 using Lokad.Cqrs.Evil;
 
 namespace Lokad.Cqrs.Feature.HandlerClasses
@@ -27,14 +29,16 @@ namespace Lokad.Cqrs.Feature.HandlerClasses
         readonly HandlerClassTransactionFactory _scopeFactory;
         readonly Func<Type, Type, MethodInfo> _hint;
         readonly IMethodContextManager _context;
+        readonly ISystemObserver _observer;
 
         public DispatchStrategy(IContainerForHandlerClasses scope, HandlerClassTransactionFactory scopeFactory,
-            Func<Type, Type, MethodInfo> hint, IMethodContextManager context)
+            Func<Type, Type, MethodInfo> hint, IMethodContextManager context, ISystemObserver observer)
         {
             _scope = scope;
             _scopeFactory = scopeFactory;
             _hint = hint;
             _context = context;
+            _observer = observer;
         }
 
         public void Dispatch(ImmutableEnvelope envelope, IEnumerable<Tuple<Type, ImmutableMessage>> pairs)
@@ -64,6 +68,7 @@ namespace Lokad.Cqrs.Feature.HandlerClasses
                         try
                         {
                             _context.SetContext(envelope, messageItem);
+                            _observer.Notify(new DispatchingMessage(envelope, messageItem.MappedType, handlerType));
                             consume.Invoke(handlerInstance, new[] {messageItem.Content});
                         }
                         catch (TargetInvocationException e)

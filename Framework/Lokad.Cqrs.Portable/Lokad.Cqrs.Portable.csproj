@@ -46,6 +46,7 @@
     <Compile Include="Build\Engine\AtomicRegistrationSource.cs" />
     <Compile Include="Build\Client\FileClientModule.cs" />
     <Compile Include="Build\Engine\FileModule.cs" />
+    <Compile Include="Core.Dispatch\Events\DispatchingMessage.cs" />
     <Compile Include="Core.Dispatch\IAdvancedDispatchBuilder.cs" />
     <Compile Include="Build\Engine\IAdvancedEngineBuilder.cs" />
     <Compile Include="Core.Serialization\AbstractDataSerializer.cs" />

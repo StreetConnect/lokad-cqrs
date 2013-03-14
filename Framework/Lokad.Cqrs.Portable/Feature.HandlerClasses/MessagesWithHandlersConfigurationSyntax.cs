@@ -141,7 +141,7 @@ namespace Lokad.Cqrs.Feature.HandlerClasses
                 .ToArray();
 
             var nesting = _nestedResolver(container, consumers);
-            var strategy = new DispatchStrategy(nesting, _scopeFactory, _hint.Lookup, _contextManager);
+            var strategy = new DispatchStrategy(nesting, _scopeFactory, _hint.Lookup, _contextManager, container.Resolve<ISystemObserver>());
 
             container.Register(strategy);
             container.Register(builder);
